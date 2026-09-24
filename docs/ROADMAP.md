@@ -40,8 +40,13 @@
 - [x] Scroll suave e scrollspy
 - [x] Identidade visual própria
 - [x] Acessibilidade básica
-- [x] Vídeo de demonstração gravado
+- [x] Vídeo de demonstração gravado e versionado em `docs/demo.mp4`
 - [x] Thumbnail da demo
+- [x] README final de portfólio
+- [x] API Reference
+- [x] Model Card
+- [x] Data Dictionary
+- [x] Changelog
 
 ## Próximas evoluções
 
