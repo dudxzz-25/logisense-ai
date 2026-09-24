@@ -20,7 +20,11 @@ Todas as mudanças relevantes do LogiSense AI serão registradas neste arquivo.
 - identidade visual em azul acinzentado e ciano;
 - documentação de API;
 - Model Card;
-- thumbnail para demonstração.
+- Data Dictionary;
+- Changelog;
+- thumbnail para demonstração;
+- vídeo de demonstração em `docs/demo.mp4`;
+- link da thumbnail diretamente para a demo.
 
 ### Alterado
 - redesign completo da interface;
