@@ -11,6 +11,7 @@
   <img alt="Pandas" src="https://img.shields.io/badge/Pandas-Data-150458?logo=pandas&logoColor=white">
   <img alt="Chart.js" src="https://img.shields.io/badge/Chart.js-Visualização-FF6384?logo=chartdotjs&logoColor=white">
   <img alt="Versão" src="https://img.shields.io/badge/versão-v0.4.0-0F8AA6">
+  <a href="https://github.com/dudxzz-25/logisense-ai/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/dudxzz-25/logisense-ai/actions/workflows/ci.yml/badge.svg"></a>
 </p>
 
 <p align="center">
@@ -321,6 +322,13 @@ logisense-ai/
 │   ├── styles.css
 │   └── app.js
 │
+├── tests/
+│   └── test_api_smoke.py
+│
+├── .github/
+│   └── workflows/
+│       └── ci.yml
+│
 ├── sql/
 │   └── schema.sql
 │
@@ -344,6 +352,24 @@ logisense-ai/
 | Visualização | Chart.js |
 | Modelagem | SQL |
 | Versionamento | Git, GitHub |
+
+---
+
+## Qualidade e validação
+
+O repositório possui uma pipeline de **CI com GitHub Actions** que roda automaticamente em pushes e pull requests para a branch `main`.
+
+A pipeline:
+
+- instala as dependências do backend;
+- compila os arquivos Python;
+- executa smoke tests para KPIs, catálogos, métricas do modelo, carregamento do ML e inferência.
+
+Para executar os testes localmente:
+
+```bash
+python -m unittest discover -s tests -p "test_*.py" -v
+```
 
 ---
 
