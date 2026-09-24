@@ -1,6 +1,33 @@
+# Python
 .venv/
+venv/
 __pycache__/
-*.pyc
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Environment / secrets
 .env
+.env.*
+!.env.example
+
+# Editors
+.vscode/
+.idea/
+
+# OS
 .DS_Store
-data/processed/*
+Thumbs.db
+
+# Logs / temporary files
+*.log
+*.tmp
+*.temp
+
+# Local generated data
+data/processed/
+
+# Node / frontend tooling
+node_modules/
