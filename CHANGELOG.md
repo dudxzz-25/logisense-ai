@@ -23,8 +23,8 @@ Todas as mudanças relevantes do LogiSense AI serão registradas neste arquivo.
 - Data Dictionary;
 - Changelog;
 - thumbnail para demonstração;
-- vídeo de demonstração em `docs/demo.mp4`;
-- link da thumbnail diretamente para a demo.
+- vídeo de demonstração publicado no YouTube;
+- link da thumbnail e dos botões do README diretamente para a demo no YouTube.
 
 ### Alterado
 - redesign completo da interface;
