@@ -1,138 +1,134 @@
 # LogiSense AI
 
 <p align="center">
-  <strong>Dashboard logístico end-to-end com análise operacional e Machine Learning para previsão de risco de atraso.</strong>
+  <strong>Dashboard logístico end-to-end para análise operacional e previsão de risco de atraso com Machine Learning.</strong>
 </p>
 
 <p align="center">
-  Python • FastAPI • Pandas • scikit-learn • JavaScript • Chart.js
+  <img alt="Python" src="https://img.shields.io/badge/Python-3.x-3776AB?logo=python&logoColor=white">
+  <img alt="FastAPI" src="https://img.shields.io/badge/FastAPI-API-009688?logo=fastapi&logoColor=white">
+  <img alt="scikit-learn" src="https://img.shields.io/badge/scikit--learn-ML-F7931E?logo=scikitlearn&logoColor=white">
+  <img alt="Pandas" src="https://img.shields.io/badge/Pandas-Data-150458?logo=pandas&logoColor=white">
+  <img alt="Chart.js" src="https://img.shields.io/badge/Chart.js-Visualização-FF6384?logo=chartdotjs&logoColor=white">
+  <img alt="Versão" src="https://img.shields.io/badge/versão-v0.4.0-0F8AA6">
 </p>
 
 <p align="center">
   <a href="docs/demo.mp4">
-    <img src="docs/images/demo-thumbnail.svg" alt="LogiSense AI — demonstração do dashboard" width="100%">
+    <img src="docs/images/demo-thumbnail.svg" alt="Demonstração do dashboard LogiSense AI" width="100%">
   </a>
 </p>
 
 <p align="center">
-  <a href="docs/demo.mp4"><strong>▶ Assistir à demonstração do LogiSense AI</strong></a>
+  <a href="docs/demo.mp4"><strong>▶ Assistir à demonstração completa</strong></a>
 </p>
 
-> **Nota:** os dados utilizados neste projeto são sintéticos e foram gerados exclusivamente para estudo e portfólio.
+> **Projeto de portfólio.** Todos os dados são sintéticos e foram gerados exclusivamente para estudo, experimentação e demonstração técnica.
 
 ---
 
-## Sobre o projeto
+## Visão geral
 
-O **LogiSense AI** simula uma operação logística completa, reunindo análise de dados, API, visualização interativa e Machine Learning em uma única aplicação.
+O **LogiSense AI** simula uma operação logística e integra, em um único projeto:
 
-O dashboard permite acompanhar:
+- geração e tratamento de dados;
+- análise de KPIs logísticos;
+- API REST com FastAPI;
+- dashboard interativo;
+- visualização de dados com Chart.js;
+- pipeline de Machine Learning;
+- inferência de risco de atraso em novas entregas.
 
-- total de entregas;
-- SLA;
-- taxa de atraso;
-- custo de frete;
-- evolução mensal dos atrasos;
-- desempenho de transportadoras;
-- rotas críticas;
-- insights operacionais;
-- score de risco de atraso para novas entregas.
+A versão atual trabalha com uma base de **12.000 entregas sintéticas** e permite explorar desempenho de transportadoras, rotas críticas, SLA, custos de frete e risco de atraso.
 
-A base atual possui **12.000 entregas sintéticas** distribuídas entre transportadoras, centros de distribuição, rotas e diferentes condições operacionais.
+---
+
+## O que o projeto entrega
+
+| Área | Funcionalidades |
+|---|---|
+| **Analytics** | KPIs de entregas, SLA, atraso e frete |
+| **Transportadoras** | volume, atraso médio, custo médio e SLA |
+| **Rotas** | comparação por origem/destino, distância e atraso médio |
+| **Série temporal** | evolução mensal de entregas, atrasos e custos |
+| **Insights** | destaques automáticos sobre desempenho e criticidade |
+| **Machine Learning** | score de risco de atraso para novas entregas |
+| **API** | endpoints REST para dados, catálogos, métricas e inferência |
+| **Frontend** | dashboard responsivo com navegação, gráficos e simulador |
 
 ---
 
 ## Demonstração
 
-Foi gravada uma demonstração curta do fluxo principal do sistema, incluindo:
+A demo mostra o fluxo principal da aplicação:
 
 1. visão geral dos KPIs;
-2. gráficos de atrasos e SLA;
-3. rotas críticas e insights;
-4. navegação pela sidebar;
-5. simulação no módulo de Predição ML;
-6. comparação entre cenários de risco alto e baixo.
+2. evolução mensal da taxa de atraso;
+3. desempenho das transportadoras;
+4. rotas críticas e insights;
+5. navegação pela sidebar;
+6. simulação de risco no módulo de Machine Learning;
+7. comparação entre cenários de risco alto e baixo.
 
-Clique na thumbnail no topo do README ou em **[▶ Assistir à demonstração](docs/demo.mp4)** para abrir o vídeo completo do dashboard.
+**[▶ Abrir vídeo da demonstração](docs/demo.mp4)**
 
 ---
 
-## Principais funcionalidades
+## Arquitetura
 
-### Dashboard operacional
+```mermaid
+flowchart LR
+    A[Gerador de dados sintéticos] --> B[CSV]
+    B --> C[Pandas]
+    C --> D[Análises e KPIs]
+    C --> E[Feature Engineering]
+    E --> F[scikit-learn]
+    F --> G[Modelo treinado]
+    D --> H[FastAPI]
+    G --> H
+    H --> I[REST API]
+    I --> J[JavaScript]
+    J --> K[Chart.js]
+    K --> L[Dashboard LogiSense AI]
+```
 
-Visualização consolidada dos principais indicadores logísticos:
+### Fluxo de uma predição
 
-- entregas analisadas;
-- SLA;
-- taxa de atraso;
-- custo total de frete;
-- evolução temporal;
-- ranking de transportadoras.
-
-### Rotas críticas
-
-A aplicação identifica rotas com maior atraso médio e exibe:
-
-- origem;
-- destino;
-- quantidade de entregas;
-- atraso médio;
-- custo médio de frete.
-
-### AI Insights
-
-A interface gera insights automáticos com base nos dados retornados pela API, destacando, por exemplo:
-
-- transportadora com menor SLA;
-- transportadora com melhor desempenho;
-- rota com maior atraso médio;
-- mês com maior taxa de atraso;
-- períodos ainda em andamento.
-
-### Predição de risco de atraso
-
-O usuário informa:
-
-- data do pedido;
-- transportadora;
-- centro de distribuição;
-- rota;
-- peso da carga;
-- valor do frete;
-- SLA contratado.
-
-O frontend envia os dados para `POST /predict-delay`. A API reproduz o mesmo feature engineering utilizado no treinamento e devolve:
-
-- score de risco;
-- nível de risco;
-- previsão de atraso;
-- threshold do modelo;
-- distância da rota;
-- modelo utilizado.
-
-Os níveis apresentados são:
-
-| Nível | Regra de interpretação |
-|---|---|
-| Baixo | Score bem abaixo do threshold |
-| Moderado | Score próximo do threshold |
-| Alto | Score acima do threshold |
-| Muito alto | Score significativamente acima do threshold |
-
-> O valor exibido é tratado como **score de risco**, e não como probabilidade calibrada.
+```text
+Usuário
+  ↓
+Formulário do dashboard
+  ↓
+JavaScript
+  ↓
+POST /predict-delay
+  ↓
+FastAPI + Pydantic
+  ↓
+Feature Engineering
+  ↓
+Pipeline scikit-learn
+  ↓
+Score + classificação de risco
+  ↓
+Resposta JSON
+  ↓
+Dashboard
+```
 
 ---
 
 ## Machine Learning
 
-O target utilizado é:
+O problema é tratado como uma classificação binária:
 
 ```python
-atrasou = atraso_dias > 0
+atrasou = (atraso_dias > 0).astype(int)
 ```
 
-### Features numéricas
+### Features utilizadas
+
+**Numéricas**
 
 - `valor_frete`
 - `peso_kg`
@@ -144,7 +140,7 @@ atrasou = atraso_dias > 0
 - `dia_semana`
 - `fim_semana`
 
-### Features categóricas
+**Categóricas**
 
 - `transportadora_nome`
 - `cd_nome`
@@ -157,45 +153,39 @@ frete_por_kg = valor_frete / peso_kg
 km_por_dia_sla = distancia_km / sla_dias
 ```
 
-Também são extraídas informações temporais da data do pedido, como mês, dia da semana e indicador de fim de semana.
+As features numéricas passam por `StandardScaler` e as categóricas por `OneHotEncoder(handle_unknown="ignore")`.
 
 ---
 
-## Modelos avaliados
+## Seleção do modelo
 
-Foram comparados três algoritmos:
-
-1. Logistic Regression
-2. Random Forest
-3. Extra Trees
-
-A seleção foi feita no conjunto de validação com foco em **PR-AUC**.
+Foram comparados três algoritmos no conjunto de validação:
 
 | Modelo | ROC-AUC | PR-AUC | F1 | Recall |
 |---|---:|---:|---:|---:|
-| Logistic Regression | 0.7160 | 0.4099 | 0.4735 | 0.6840 |
+| Logistic Regression | **0.7160** | **0.4099** | **0.4735** | **0.6840** |
 | Random Forest | 0.7028 | 0.4017 | 0.4463 | 0.4519 |
 | Extra Trees | 0.7044 | 0.4067 | 0.4572 | 0.5605 |
 
-Modelo selecionado:
+O modelo selecionado foi:
 
 ```text
 LogisticRegression
 ```
 
-Threshold otimizado no conjunto de validação:
+A seleção foi feita por **PR-AUC** no conjunto de validação. Em seguida, o threshold foi ajustado para maximizar o **F1-score**:
 
 ```text
-0.5444
+threshold = 0.5444
 ```
+
+Depois da seleção, o modelo foi retreinado com treino + validação e avaliado no conjunto de teste mantido separado.
 
 ---
 
 ## Avaliação final
 
-Resultados no conjunto de teste:
-
-| Métrica | Resultado |
+| Métrica | Teste |
 |---|---:|
 | Accuracy | 0.6783 |
 | Balanced Accuracy | 0.6544 |
@@ -214,93 +204,27 @@ Matriz de confusão:
 
 O conjunto de teste contém **1.800 registros** e cobre o período de **23/06/2026 a 23/09/2026**.
 
-### Por que não olhar apenas Accuracy?
+### Por que a accuracy não é usada isoladamente?
 
-O baseline de accuracy da classe majoritária é **0.7917**. Isso significa que um classificador que previsse apenas a classe mais frequente poderia obter uma accuracy maior, porém teria pouca utilidade para identificar atrasos.
+O baseline da classe majoritária é **0.7917**. Portanto, uma accuracy aparentemente alta poderia ser obtida simplesmente favorecendo a classe mais frequente.
 
-Por isso, o projeto também considera:
+Por isso, o projeto considera também **Balanced Accuracy, Recall, F1, ROC-AUC e PR-AUC**, métricas mais informativas para o objetivo de identificar atrasos.
 
-- Balanced Accuracy;
-- Precision;
-- Recall;
-- F1-score;
-- ROC-AUC;
-- PR-AUC.
+> O valor mostrado no dashboard é um **score de risco**, não uma probabilidade calibrada.
 
 ---
 
 ## Divisão temporal
 
-Os dados são ordenados cronologicamente antes da divisão:
+Os dados são ordenados cronologicamente antes da separação:
 
-```text
-70% treino
-15% validação
-15% teste
-```
+| Conjunto | Proporção | Período |
+|---|---:|---|
+| Treino | 70% | 01/01/2025 a 21/03/2026 |
+| Validação | 15% | 21/03/2026 a 23/06/2026 |
+| Teste | 15% | 23/06/2026 a 23/09/2026 |
 
-| Conjunto | Período |
-|---|---|
-| Treino | 01/01/2025 a 21/03/2026 |
-| Validação | 21/03/2026 a 23/06/2026 |
-| Teste | 23/06/2026 a 23/09/2026 |
-
-Essa estratégia aproxima melhor o cenário real de aprender com dados passados e avaliar em dados futuros.
-
----
-
-## Arquitetura
-
-```mermaid
-flowchart LR
-    A[Dados sintéticos em CSV] --> B[Pandas]
-    B --> C[Análises operacionais]
-    B --> D[Feature Engineering]
-    D --> E[scikit-learn]
-    E --> F[Modelo treinado]
-    C --> G[FastAPI]
-    F --> G
-    G --> H[REST API]
-    H --> I[JavaScript]
-    I --> J[Chart.js]
-    J --> K[Dashboard LogiSense AI]
-```
-
----
-
-## Estrutura do projeto
-
-```text
-logisense-ai/
-├── backend/
-│   ├── app/
-│   │   └── main.py
-│   ├── ml/
-│   │   ├── train_model.py
-│   │   ├── delay_model.joblib
-│   │   └── metrics.json
-│   └── requirements.txt
-├── data/
-│   ├── raw/
-│   └── raw_v1/
-├── docs/
-│   ├── images/
-│   │   └── demo-thumbnail.svg
-│   ├── API.md
-│   ├── DATA_DICTIONARY.md
-│   ├── MODEL_CARD.md
-│   ├── ROADMAP.md
-│   └── demo.mp4
-├── frontend/
-│   ├── index.html
-│   ├── styles.css
-│   └── app.js
-├── sql/
-│   └── schema.sql
-├── generate_data.py
-├── .gitignore
-└── README.md
-```
+Essa estratégia evita uma divisão aleatória puramente retrospectiva e aproxima o experimento do cenário de aprender com dados passados para avaliar dados futuros.
 
 ---
 
@@ -318,21 +242,21 @@ Swagger:
 http://127.0.0.1:8000/docs
 ```
 
-### Endpoints
+### Endpoints disponíveis
 
 | Método | Endpoint | Descrição |
 |---|---|---|
-| GET | `/` | Informações básicas da API |
-| GET | `/kpis` | KPIs logísticos |
-| GET | `/transportadoras` | Métricas por transportadora |
-| GET | `/rotas` | Métricas por rota |
-| GET | `/serie-mensal` | Evolução mensal |
-| GET | `/catalogos` | Transportadoras, CDs e rotas para o simulador |
-| GET | `/ml-status` | Status do modelo carregado |
-| GET | `/model-metrics` | Métricas salvas do treinamento |
-| POST | `/predict-delay` | Inferência de risco de atraso |
+| GET | `/` | status e informações da API |
+| GET | `/kpis` | KPIs gerais da operação |
+| GET | `/transportadoras` | métricas por transportadora |
+| GET | `/rotas` | métricas por rota |
+| GET | `/serie-mensal` | evolução mensal |
+| GET | `/catalogos` | dados para os selects do simulador |
+| GET | `/ml-status` | status do artefato de ML |
+| GET | `/model-metrics` | métricas salvas do treinamento |
+| POST | `/predict-delay` | inferência de risco de atraso |
 
-Exemplo de requisição:
+### Exemplo de requisição
 
 ```json
 {
@@ -346,7 +270,7 @@ Exemplo de requisição:
 }
 ```
 
-Exemplo de resposta:
+### Exemplo de resposta
 
 ```json
 {
@@ -358,44 +282,73 @@ Exemplo de resposta:
   "transportadora": "VelozOne",
   "centro_distribuicao": "CD Cajamar",
   "rota": "São Paulo/SP -> Belo Horizonte/MG",
-  "distancia_km": 590,
+  "distancia_km": 590.0,
   "sla_dias": 1
 }
+```
+
+Documentação detalhada: **[docs/API.md](docs/API.md)**.
+
+---
+
+## Estrutura do projeto
+
+```text
+logisense-ai/
+├── backend/
+│   ├── app/
+│   │   └── main.py
+│   ├── ml/
+│   │   ├── train_model.py
+│   │   ├── delay_model.joblib
+│   │   └── metrics.json
+│   └── requirements.txt
+│
+├── data/
+│   ├── raw/
+│   └── raw_v1/
+│
+├── docs/
+│   ├── images/
+│   │   └── demo-thumbnail.svg
+│   ├── API.md
+│   ├── DATA_DICTIONARY.md
+│   ├── MODEL_CARD.md
+│   ├── ROADMAP.md
+│   └── demo.mp4
+│
+├── frontend/
+│   ├── index.html
+│   ├── styles.css
+│   └── app.js
+│
+├── sql/
+│   └── schema.sql
+│
+├── generate_data.py
+├── CHANGELOG.md
+├── .gitattributes
+├── .gitignore
+└── README.md
 ```
 
 ---
 
 ## Tecnologias
 
-### Dados e Machine Learning
-
-- Python
-- Pandas
-- scikit-learn
-- Joblib
-
-### Backend
-
-- FastAPI
-- Uvicorn
-- Pydantic
-
-### Frontend
-
-- HTML5
-- CSS3
-- JavaScript
-- Chart.js
-
-### Desenvolvimento
-
-- Git
-- GitHub
-- Visual Studio Code
+| Camada | Tecnologias |
+|---|---|
+| Dados | Python, Pandas, CSV |
+| Machine Learning | scikit-learn, Joblib |
+| Backend | FastAPI, Uvicorn, Pydantic |
+| Frontend | HTML5, CSS3, JavaScript |
+| Visualização | Chart.js |
+| Modelagem | SQL |
+| Versionamento | Git, GitHub |
 
 ---
 
-## Como executar
+## Como executar localmente
 
 ### 1. Clone o repositório
 
@@ -404,9 +357,9 @@ git clone https://github.com/dudxzz-25/logisense-ai.git
 cd logisense-ai
 ```
 
-### 2. Crie e ative o ambiente virtual
+### 2. Crie o ambiente virtual
 
-No Windows PowerShell:
+**Windows PowerShell**
 
 ```powershell
 cd backend
@@ -414,34 +367,42 @@ python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 ```
 
+**Linux/macOS**
+
+```bash
+cd backend
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
 ### 3. Instale as dependências
 
-```powershell
+```bash
 pip install -r requirements.txt
 ```
 
 ### 4. Inicie a API
 
-```powershell
+```bash
 python -m uvicorn app.main:app --reload
 ```
 
-Acesse:
+A API ficará disponível em:
 
 ```text
-http://127.0.0.1:8000/docs
+http://127.0.0.1:8000
 ```
 
 ### 5. Inicie o frontend
 
-Em outro terminal:
+Abra outro terminal:
 
-```powershell
+```bash
 cd frontend
 python -m http.server 5500
 ```
 
-Abra:
+Acesse:
 
 ```text
 http://127.0.0.1:5500
@@ -449,45 +410,15 @@ http://127.0.0.1:5500
 
 ---
 
-## Treinando novamente o modelo
-
-Na raiz do projeto, com o ambiente virtual ativo:
-
-```powershell
-python backend/ml/train_model.py
-```
-
-O script:
-
-1. carrega os dados;
-2. realiza feature engineering;
-3. divide os dados cronologicamente;
-4. treina os modelos candidatos;
-5. compara a validação;
-6. otimiza o threshold;
-7. retreina o modelo escolhido;
-8. avalia no conjunto de teste;
-9. salva o modelo;
-10. salva as métricas.
-
-Arquivos gerados:
-
-```text
-backend/ml/delay_model.joblib
-backend/ml/metrics.json
-```
-
----
-
-## Gerando uma nova base sintética
+## Gerando os dados sintéticos
 
 Na raiz do projeto:
 
-```powershell
+```bash
 python generate_data.py
 ```
 
-O simulador considera fatores como:
+O gerador usa seed fixa e simula diferentes níveis de risco com base em fatores como:
 
 - transportadora;
 - centro de distribuição;
@@ -498,117 +429,105 @@ O simulador considera fatores como:
 - dia da semana;
 - sazonalidade.
 
-O objetivo é criar um cenário com sinal estatístico suficiente para análise e ML, sem tornar o target trivialmente determinístico.
+A intenção é criar um conjunto de dados reproduzível com padrões suficientes para análises e experimentos de ML, sem utilizar dados reais.
 
 ---
 
-## Fluxo de uma predição
+## Treinando o modelo novamente
+
+Na raiz do projeto, com o ambiente virtual ativo:
+
+```bash
+python backend/ml/train_model.py
+```
+
+O pipeline:
+
+1. carrega e combina os dados;
+2. cria o target;
+3. executa feature engineering;
+4. separa treino, validação e teste temporalmente;
+5. treina os modelos candidatos;
+6. compara os resultados por PR-AUC;
+7. otimiza o threshold no conjunto de validação;
+8. retreina o modelo selecionado;
+9. avalia no teste;
+10. salva artefato e métricas.
+
+Arquivos gerados:
 
 ```text
-Usuário
-   ↓
-Formulário do Dashboard
-   ↓
-JavaScript
-   ↓
-POST /predict-delay
-   ↓
-FastAPI + Pydantic
-   ↓
-Feature Engineering
-   ↓
-Modelo scikit-learn
-   ↓
-Score e nível de risco
-   ↓
-Resposta JSON
-   ↓
-Dashboard
+backend/ml/delay_model.joblib
+backend/ml/metrics.json
 ```
+
+---
+
+## Documentação
+
+| Documento | Conteúdo |
+|---|---|
+| **[API Reference](docs/API.md)** | endpoints, payloads e respostas |
+| **[Data Dictionary](docs/DATA_DICTIONARY.md)** | estrutura da base sintética |
+| **[Model Card](docs/MODEL_CARD.md)** | metodologia, métricas e limitações do modelo |
+| **[Roadmap](docs/ROADMAP.md)** | funcionalidades concluídas e próximas evoluções |
+| **[Changelog](CHANGELOG.md)** | histórico das principais versões |
 
 ---
 
 ## Decisões técnicas
 
-### Dados sintéticos
+**Dados sintéticos.** A base não contém dados reais de clientes, pedidos ou transportadoras.
 
-O projeto não utiliza dados reais de clientes ou transportadoras. A base foi criada artificialmente para permitir um fluxo completo de Data Analytics e Machine Learning sem expor informações sensíveis.
+**Split temporal.** O modelo é treinado com registros anteriores e testado em um período posterior.
 
-### PR-AUC
+**PR-AUC para seleção.** A métrica foi priorizada devido ao desbalanceamento do target.
 
-Como o target é desbalanceado, PR-AUC é uma métrica especialmente útil para comparar os modelos.
+**Threshold personalizado.** O ponto de corte foi escolhido no conjunto de validação com base em F1-score.
 
-### Threshold personalizado
+**Sem leakage operacional.** Variáveis que só existem após o resultado da entrega não entram como features de inferência.
 
-O threshold não foi escolhido arbitrariamente: ele foi otimizado no conjunto de validação usando F1-score.
-
-### Score de risco
-
-A saída do classificador não é apresentada como probabilidade calibrada. A interface usa a expressão **score de risco** para evitar uma interpretação estatística mais forte do que o modelo permite.
-
----
-
-## Documentação complementar
-
-- [API Reference](docs/API.md) — endpoints, payloads e respostas;
-- [Data Dictionary](docs/DATA_DICTIONARY.md) — estrutura e significado dos dados sintéticos;
-- [Model Card](docs/MODEL_CARD.md) — dados, features, métricas, threshold e limitações do modelo;
-- [Roadmap](docs/ROADMAP.md) — entregas concluídas e próximas evoluções;
-- [Changelog](CHANGELOG.md) — histórico das principais versões.
+**Score, não probabilidade.** A saída do classificador é apresentada como score de risco, pois não foi realizada calibração probabilística.
 
 ---
 
 ## Limitações atuais
 
-- dados sintéticos;
+- dados exclusivamente sintéticos;
 - execução local;
-- armazenamento em CSV;
-- sem autenticação;
+- persistência operacional em CSV;
+- ausência de autenticação;
 - sem integração com sistemas logísticos reais;
 - sem calibração probabilística;
-- sem monitoramento de drift;
-- sem retreinamento automático.
+- sem explicabilidade por predição;
+- sem monitoramento de data/model drift;
+- sem retreinamento automático;
+- sem deploy em cloud nesta versão.
 
 ---
 
-## Próximos passos
+## Próximas evoluções
 
-- PostgreSQL;
-- filtros avançados;
+- persistência em PostgreSQL;
+- pipeline ETL estruturado;
+- modelo estrela analítico;
+- filtros avançados no dashboard;
 - testes automatizados;
-- Docker;
-- deploy;
 - explicabilidade do modelo;
-- monitoramento de data/model drift;
+- monitoramento de drift;
+- Docker;
 - CI/CD;
-- melhoria da experiência mobile.
+- deploy em cloud.
 
-Veja também o [roadmap](docs/ROADMAP.md).
-
----
-
-## Objetivo de portfólio
-
-O LogiSense AI demonstra, em um único projeto:
-
-- análise de dados;
-- Python e Pandas;
-- desenvolvimento de APIs;
-- Machine Learning;
-- feature engineering;
-- avaliação de modelos;
-- integração frontend/backend;
-- dashboards interativos;
-- visualização de dados;
-- desenvolvimento end-to-end.
+Acompanhe o planejamento em **[docs/ROADMAP.md](docs/ROADMAP.md)**.
 
 ---
 
-## Status
+## Status do projeto
 
 ```text
 Versão: v0.4.0
-Status: funcional / em evolução
+Status: funcional e em evolução
 ```
 
 ---
@@ -617,4 +536,4 @@ Status: funcional / em evolução
 
 **Eduardo de Toledo Dias**
 
-Projeto de portfólio em **Data Analytics, Machine Learning e Software Development**.
+Projeto desenvolvido para portfólio com foco em **Data Analytics, Machine Learning, APIs e desenvolvimento end-to-end**.
