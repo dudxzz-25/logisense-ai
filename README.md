@@ -14,13 +14,13 @@
 </p>
 
 <p align="center">
-  <a href="docs/demo.mp4">
+  <a href="https://raw.githubusercontent.com/dudxzz-25/logisense-ai/main/docs/demo.mp4">
     <img src="docs/images/demo-thumbnail.svg" alt="Demonstração do dashboard LogiSense AI" width="100%">
   </a>
 </p>
 
 <p align="center">
-  <a href="docs/demo.mp4"><strong>▶ Assistir à demonstração completa</strong></a>
+  <a href="https://raw.githubusercontent.com/dudxzz-25/logisense-ai/main/docs/demo.mp4"><strong>▶ Assistir à demonstração completa</strong></a>
 </p>
 
 > **Projeto de portfólio.** Todos os dados são sintéticos e foram gerados exclusivamente para estudo, experimentação e demonstração técnica.
@@ -70,7 +70,7 @@ A demo mostra o fluxo principal da aplicação:
 6. simulação de risco no módulo de Machine Learning;
 7. comparação entre cenários de risco alto e baixo.
 
-**[▶ Abrir vídeo da demonstração](docs/demo.mp4)**
+**[▶ Abrir vídeo da demonstração](https://raw.githubusercontent.com/dudxzz-25/logisense-ai/main/docs/demo.mp4)**
 
 ---
 
