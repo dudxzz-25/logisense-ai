@@ -1,0 +1,9 @@
+rota_id,origem,destino,distancia_km
+1,São Paulo/SP,Rio de Janeiro/RJ,430
+2,São Paulo/SP,Campinas/SP,100
+3,São Paulo/SP,Belo Horizonte/MG,590
+4,Curitiba/PR,São Paulo/SP,410
+5,Campinas/SP,Ribeirão Preto/SP,220
+6,São Paulo/SP,Curitiba/PR,410
+7,São Paulo/SP,Santos/SP,80
+8,São Paulo/SP,Sorocaba/SP,100

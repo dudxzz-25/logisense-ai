@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="LogiSense AI - Dashboard inteligente para análise logística, monitoramento de SLA e previsão de risco de atraso."
+    >
+
+    <title>
+        LogiSense AI | Dashboard Logístico
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="styles.css"
+    >
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/chart.js"
+        defer
+    ></script>
+
+    <script
+        src="app.js"
+        defer
+    ></script>
+</head>
+
+
+<body>
+
+    <!-- =========================================
+         SIDEBAR
+    ========================================== -->
+
+    <aside
+        class="sidebar"
+        aria-label="Navegação principal"
+    >
+
+        <div class="brand">
+
+            <div
+                class="brand-icon"
+                aria-hidden="true"
+            >
+                L
+            </div>
+
+            <div>
+
+                <h1>
+                    LogiSense
+                </h1>
+
+                <span>
+                    AI Logistics
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <nav
+            class="menu"
+            aria-label="Seções do dashboard"
+        >
+
+            <a
+                class="menu-item active"
+                href="#dashboard"
+                aria-current="page"
+            >
+                Dashboard
+            </a>
+
+            <a
+                class="menu-item"
+                href="#transportadoras"
+            >
+                Transportadoras
+            </a>
+
+            <a
+                class="menu-item"
+                href="#rotas"
+            >
+                Rotas
+            </a>
+
+            <a
+                class="menu-item"
+                href="#predicao-ml"
+            >
+                Predição ML
+            </a>
+
+            <a
+                class="menu-item"
+                href="#ai-insights"
+            >
+                AI Insights
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-footer">
+
+            <p>
+                LogiSense AI
+            </p>
+
+            <span>
+                v0.4.0
+            </span>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =========================================
+         CONTEÚDO PRINCIPAL
+    ========================================== -->
+
+    <main
+        class="main-content"
+        id="mainContent"
+    >
+
+        <!-- =====================================
+             HEADER / DASHBOARD
+        ====================================== -->
+
+        <header
+            class="topbar"
+            id="dashboard"
+        >
+
+            <div>
+
+                <p class="eyebrow">
+                    VISÃO OPERACIONAL
+                </p>
+
+                <h2>
+                    Dashboard Logístico
+                </h2>
+
+                <p class="subtitle">
+                    Monitoramento inteligente de entregas,
+                    custos, SLA e risco operacional.
+                </p>
+
+            </div>
+
+
+            <div
+                class="api-status"
+                aria-label="Status da API"
+                aria-live="polite"
+            >
+
+                <span
+                    class="status-dot"
+                    aria-hidden="true"
+                ></span>
+
+                <div>
+
+                    <small>
+                        API
+                    </small>
+
+                    <strong id="apiStatus">
+                        Conectando...
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- =====================================
+             KPIs
+        ====================================== -->
+
+        <section
+            class="kpi-grid"
+            aria-label="Indicadores principais"
+        >
+
+            <article class="kpi-card">
+
+                <div class="kpi-header">
+
+                    <span>
+                        Total de entregas
+                    </span>
+
+                </div>
+
+                <strong
+                    class="kpi-value"
+                    id="totalEntregas"
+                >
+                    —
+                </strong>
+
+                <p>
+                    Operações analisadas
+                </p>
+
+            </article>
+
+
+            <article class="kpi-card">
+
+                <div class="kpi-header">
+
+                    <span>
+                        SLA
+                    </span>
+
+                </div>
+
+                <strong
+                    class="kpi-value"
+                    id="sla"
+                >
+                    —
+                </strong>
+
+                <p>
+                    Entregas realizadas no prazo
+                </p>
+
+            </article>
+
+
+            <article class="kpi-card">
+
+                <div class="kpi-header">
+
+                    <span>
+                        Taxa de atraso
+                    </span>
+
+                </div>
+
+                <strong
+                    class="kpi-value"
+                    id="taxaAtraso"
+                >
+                    —
+                </strong>
+
+                <p>
+                    Percentual de entregas atrasadas
+                </p>
+
+            </article>
+
+
+            <article class="kpi-card">
+
+                <div class="kpi-header">
+
+                    <span>
+                        Custo total de frete
+                    </span>
+
+                </div>
+
+                <strong
+                    class="kpi-value"
+                    id="custoTotal"
+                >
+                    —
+                </strong>
+
+                <p>
+                    Investimento logístico acumulado
+                </p>
+
+            </article>
+
+        </section>
+
+
+        <!-- =====================================
+             GRÁFICOS
+        ====================================== -->
+
+        <section
+            class="dashboard-grid"
+            aria-label="Análises de performance"
+        >
+
+            <!-- EVOLUÇÃO DE ATRASOS -->
+
+            <article
+                class="panel"
+                aria-labelledby="atrasoTitle"
+            >
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <span class="section-label">
+                            PERFORMANCE
+                        </span>
+
+                        <h3 id="atrasoTitle">
+                            Evolução da taxa de atraso
+                        </h3>
+
+                    </div>
+
+
+                    <span class="panel-badge">
+                        Mensal
+                    </span>
+
+                </div>
+
+
+                <div class="chart-container">
+
+                    <canvas
+                        id="atrasoChart"
+                        aria-label="Gráfico da evolução mensal da taxa de atraso"
+                        role="img"
+                    ></canvas>
+
+                </div>
+
+            </article>
+
+
+            <!-- TRANSPORTADORAS -->
+
+            <article
+                class="panel"
+                id="transportadoras"
+                aria-labelledby="transportadorasTitle"
+            >
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <span class="section-label">
+                            SLA
+                        </span>
+
+                        <h3 id="transportadorasTitle">
+                            Transportadoras
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="chart-container">
+
+                    <canvas
+                        id="transportadorasChart"
+                        aria-label="Gráfico de SLA por transportadora"
+                        role="img"
+                    ></canvas>
+
+                </div>
+
+            </article>
+
+        </section>
+
+
+        <!-- =====================================
+             ROTAS + INSIGHTS
+        ====================================== -->
+
+        <section
+            class="dashboard-grid"
+            aria-label="Operação e inteligência"
+        >
+
+            <!-- ROTAS -->
+
+            <article
+                class="panel"
+                id="rotas"
+                aria-labelledby="rotasTitle"
+            >
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <span class="section-label">
+                            OPERAÇÃO
+                        </span>
+
+                        <h3 id="rotasTitle">
+                            Rotas críticas
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th scope="col">
+                                    Origem
+                                </th>
+
+                                <th scope="col">
+                                    Destino
+                                </th>
+
+                                <th scope="col">
+                                    Entregas
+                                </th>
+
+                                <th scope="col">
+                                    Atraso médio
+                                </th>
+
+                                <th scope="col">
+                                    Frete médio
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="rotasTable">
+
+                            <tr>
+
+                                <td colspan="5">
+                                    Carregando dados...
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </article>
+
+
+            <!-- AI INSIGHTS -->
+
+            <article
+                class="panel insights-panel"
+                id="ai-insights"
+                aria-labelledby="insightsTitle"
+            >
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <span class="section-label">
+                            INTELIGÊNCIA
+                        </span>
+
+                        <h3 id="insightsTitle">
+                            LogiSense AI Insights
+                        </h3>
+
+                    </div>
+
+
+                    <span class="ai-badge">
+                        AI
+                    </span>
+
+                </div>
+
+
+                <div
+                    id="insightsContainer"
+                    aria-live="polite"
+                >
+
+                    <div class="insight-item">
+
+                        <span
+                            class="insight-icon"
+                            aria-hidden="true"
+                        >
+                            ✦
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Analisando operação
+                            </strong>
+
+                            <p>
+                                Os insights serão carregados
+                                automaticamente a partir dos
+                                dados da API.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+        </section>
+
+
+        <!-- =====================================
+             PREDIÇÃO ML
+        ====================================== -->
+
+        <section
+            class="prediction-section"
+            id="predicao-ml"
+            aria-labelledby="predictionTitle"
+        >
+
+            <article class="panel prediction-panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <span class="section-label">
+                            MACHINE LEARNING
+                        </span>
+
+                        <h3 id="predictionTitle">
+                            Predição de risco de atraso
+                        </h3>
+
+                        <p class="panel-description">
+                            Simule uma nova entrega e utilize
+                            o modelo treinado para identificar
+                            o nível de risco operacional.
+                        </p>
+
+                    </div>
+
+
+                    <span class="ml-badge">
+                        ML
+                    </span>
+
+                </div>
+
+
+                <div class="prediction-layout">
+
+                    <!-- =============================
+                         FORMULÁRIO
+                    ============================== -->
+
+                    <form
+                        class="prediction-form"
+                        id="predictionForm"
+                    >
+
+                        <div class="form-grid">
+
+                            <!-- DATA -->
+
+                            <div class="form-group">
+
+                                <label for="predictDate">
+                                    Data do pedido
+                                </label>
+
+                                <input
+                                    type="date"
+                                    id="predictDate"
+                                    name="data_pedido"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <!-- TRANSPORTADORA -->
+
+                            <div class="form-group">
+
+                                <label for="predictTransportadora">
+                                    Transportadora
+                                </label>
+
+                                <select
+                                    id="predictTransportadora"
+                                    name="transportadora_id"
+                                    required
+                                >
+
+                                    <option
+                                        value=""
+                                        selected
+                                    >
+                                        Selecione
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <!-- CD -->
+
+                            <div class="form-group">
+
+                                <label for="predictCd">
+                                    Centro de distribuição
+                                </label>
+
+                                <select
+                                    id="predictCd"
+                                    name="cd_id"
+                                    required
+                                >
+
+                                    <option
+                                        value=""
+                                        selected
+                                    >
+                                        Selecione
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <!-- ROTA -->
+
+                            <div class="form-group">
+
+                                <label for="predictRota">
+                                    Rota
+                                </label>
+
+                                <select
+                                    id="predictRota"
+                                    name="rota_id"
+                                    required
+                                >
+
+                                    <option
+                                        value=""
+                                        selected
+                                    >
+                                        Selecione
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <!-- PESO -->
+
+                            <div class="form-group">
+
+                                <label for="predictPeso">
+                                    Peso da carga
+                                </label>
+
+                                <div class="input-with-unit">
+
+                                    <input
+                                        type="number"
+                                        id="predictPeso"
+                                        name="peso_kg"
+                                        placeholder="Ex: 780"
+                                        min="0.01"
+                                        step="0.01"
+                                        inputmode="decimal"
+                                        required
+                                    >
+
+                                    <span>
+                                        kg
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- FRETE -->
+
+                            <div class="form-group">
+
+                                <label for="predictFrete">
+                                    Valor do frete
+                                </label>
+
+                                <div class="input-with-unit">
+
+                                    <span>
+                                        R$
+                                    </span>
+
+                                    <input
+                                        type="number"
+                                        id="predictFrete"
+                                        name="valor_frete"
+                                        placeholder="Ex: 980"
+                                        min="0.01"
+                                        step="0.01"
+                                        inputmode="decimal"
+                                        required
+                                    >
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- SLA -->
+
+                            <div class="form-group">
+
+                                <label for="predictSla">
+                                    SLA contratado
+                                </label>
+
+                                <div class="input-with-unit">
+
+                                    <input
+                                        type="number"
+                                        id="predictSla"
+                                        name="sla_dias"
+                                        placeholder="Ex: 2"
+                                        min="1"
+                                        max="30"
+                                        step="1"
+                                        required
+                                    >
+
+                                    <span>
+                                        dias
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="predict-button"
+                            id="predictButton"
+                        >
+
+                            <span>
+                                Analisar risco
+                            </span>
+
+                        </button>
+
+                    </form>
+
+
+                    <!-- =============================
+                         RESULTADO
+                    ============================== -->
+
+                    <div
+                        class="prediction-result"
+                        aria-live="polite"
+                    >
+
+                        <!-- ESTADO INICIAL -->
+
+                        <div class="prediction-placeholder">
+
+                            <span
+                                class="prediction-placeholder-icon"
+                                aria-hidden="true"
+                            >
+                                ✦
+                            </span>
+
+                            <h4>
+                                Modelo pronto
+                            </h4>
+
+                            <p>
+                                Preencha os dados da entrega
+                                e clique em
+                                <strong>
+                                    Analisar risco
+                                </strong>
+                                para executar o modelo.
+                            </p>
+
+                        </div>
+
+
+                        <!-- RESULTADO DO MODELO -->
+
+                        <div
+                            class="prediction-content hidden"
+                            id="predictionContent"
+                        >
+
+                            <span class="prediction-label">
+                                SCORE DE RISCO
+                            </span>
+
+
+                            <strong
+                                class="prediction-score"
+                                id="predictionScore"
+                            >
+                                —
+                            </strong>
+
+
+                            <span
+                                class="risk-level"
+                                id="predictionLevel"
+                            >
+                                —
+                            </span>
+
+
+                            <div class="prediction-divider"></div>
+
+
+                            <div class="prediction-details">
+
+                                <div>
+
+                                    <span>
+                                        Modelo
+                                    </span>
+
+                                    <strong id="predictionModel">
+                                        —
+                                    </strong>
+
+                                </div>
+
+
+                                <div>
+
+                                    <span>
+                                        Threshold
+                                    </span>
+
+                                    <strong id="predictionThreshold">
+                                        —
+                                    </strong>
+
+                                </div>
+
+
+                                <div>
+
+                                    <span>
+                                        Distância
+                                    </span>
+
+                                    <strong id="predictionDistance">
+                                        —
+                                    </strong>
+
+                                </div>
+
+
+                                <div>
+
+                                    <span>
+                                        Previsão
+                                    </span>
+
+                                    <strong id="predictionStatus">
+                                        —
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+
+                            <p
+                                class="prediction-route"
+                                id="predictionRoute"
+                            >
+                                —
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+        </section>
+
+
+        <!-- =====================================
+             MÉTRICAS DO MODELO
+        ====================================== -->
+
+        <section
+            class="model-info-grid"
+            aria-label="Métricas do modelo de machine learning"
+        >
+
+            <article class="model-info-card">
+
+                <span>
+                    Modelo em produção
+                </span>
+
+                <strong id="modelName">
+                    —
+                </strong>
+
+            </article>
+
+
+            <article class="model-info-card">
+
+                <span>
+                    ROC-AUC
+                </span>
+
+                <strong id="modelRocAuc">
+                    —
+                </strong>
+
+            </article>
+
+
+            <article class="model-info-card">
+
+                <span>
+                    Recall
+                </span>
+
+                <strong id="modelRecall">
+                    —
+                </strong>
+
+            </article>
+
+
+            <article class="model-info-card">
+
+                <span>
+                    F1-score
+                </span>
+
+                <strong id="modelF1">
+                    —
+                </strong>
+
+            </article>
+
+        </section>
+
+
+        <!-- =====================================
+             FOOTER
+        ====================================== -->
+
+        <footer>
+
+            <span>
+                LogiSense AI • Projeto de Data & Machine Learning
+            </span>
+
+            <span>
+                FastAPI • Pandas • scikit-learn • JavaScript • Chart.js
+            </span>
+
+        </footer>
+
+    </main>
+
+</body>
+
+</html>
