@@ -538,6 +538,14 @@ A saída do classificador não é apresentada como probabilidade calibrada. A in
 
 ---
 
+## Documentação complementar
+
+- [API Reference](docs/API.md) — endpoints, payloads e respostas;
+- [Model Card](docs/MODEL_CARD.md) — dados, features, métricas, threshold e limitações do modelo;
+- [Roadmap](docs/ROADMAP.md) — entregas concluídas e próximas evoluções.
+
+---
+
 ## Limitações atuais
 
 - dados sintéticos;
