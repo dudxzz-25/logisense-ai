@@ -315,7 +315,6 @@ logisense-ai/
 │   ├── DATA_DICTIONARY.md
 │   ├── MODEL_CARD.md
 │   ├── ROADMAP.md
-│   └── demo.mp4
 │
 ├── frontend/
 │   ├── index.html
