@@ -9,7 +9,13 @@
 </p>
 
 <p align="center">
-  <img src="docs/images/demo-thumbnail.svg" alt="LogiSense AI — demonstração do dashboard" width="100%">
+  <a href="docs/demo.mp4">
+    <img src="docs/images/demo-thumbnail.svg" alt="LogiSense AI — demonstração do dashboard" width="100%">
+  </a>
+</p>
+
+<p align="center">
+  <a href="docs/demo.mp4"><strong>▶ Assistir à demonstração do LogiSense AI</strong></a>
 </p>
 
 > **Nota:** os dados utilizados neste projeto são sintéticos e foram gerados exclusivamente para estudo e portfólio.
@@ -47,7 +53,7 @@ Foi gravada uma demonstração curta do fluxo principal do sistema, incluindo:
 5. simulação no módulo de Predição ML;
 6. comparação entre cenários de risco alto e baixo.
 
-O vídeo será publicado junto ao material final de portfólio. A thumbnail acima já representa a identidade visual da demo.
+Clique na thumbnail no topo do README ou em **[▶ Assistir à demonstração](docs/demo.mp4)** para abrir o vídeo completo do dashboard.
 
 ---
 
@@ -280,7 +286,11 @@ logisense-ai/
 ├── docs/
 │   ├── images/
 │   │   └── demo-thumbnail.svg
-│   └── ROADMAP.md
+│   ├── API.md
+│   ├── DATA_DICTIONARY.md
+│   ├── MODEL_CARD.md
+│   ├── ROADMAP.md
+│   └── demo.mp4
 ├── frontend/
 │   ├── index.html
 │   ├── styles.css
@@ -541,6 +551,7 @@ A saída do classificador não é apresentada como probabilidade calibrada. A in
 ## Documentação complementar
 
 - [API Reference](docs/API.md) — endpoints, payloads e respostas;
+- [Data Dictionary](docs/DATA_DICTIONARY.md) — estrutura e significado dos dados sintéticos;
 - [Model Card](docs/MODEL_CARD.md) — dados, features, métricas, threshold e limitações do modelo;
 - [Roadmap](docs/ROADMAP.md) — entregas concluídas e próximas evoluções;
 - [Changelog](CHANGELOG.md) — histórico das principais versões.
