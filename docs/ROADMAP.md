@@ -70,8 +70,10 @@
 - [ ] Retreinamento automatizado
 
 ### Engenharia
-- [ ] Testes automatizados
+- [x] Smoke tests automatizados
+- [x] CI com GitHub Actions
+- [ ] Ampliar cobertura de testes
 - [ ] Docker
-- [ ] CI/CD
+- [ ] CD / deploy automatizado
 - [ ] Deploy em cloud
 - [ ] Autenticação
