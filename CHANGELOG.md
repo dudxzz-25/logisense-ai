@@ -24,7 +24,9 @@ Todas as mudanças relevantes do LogiSense AI serão registradas neste arquivo.
 - Changelog;
 - thumbnail para demonstração;
 - vídeo de demonstração publicado no YouTube;
-- link da thumbnail e dos botões do README diretamente para a demo no YouTube.
+- link da thumbnail e dos botões do README diretamente para a demo no YouTube;
+- smoke tests automatizados;
+- pipeline de CI com GitHub Actions.
 
 ### Alterado
 - redesign completo da interface;
