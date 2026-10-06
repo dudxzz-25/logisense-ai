@@ -537,11 +537,11 @@ backend/ml/metrics.json
 - pipeline ETL estruturado;
 - modelo estrela analítico;
 - filtros avançados no dashboard;
-- testes automatizados;
+- ampliar a cobertura de testes automatizados;
 - explicabilidade do modelo;
-- monitoramento de drift;
+- monitoramento de data/model drift;
 - Docker;
-- CI/CD;
+- CD / deploy automatizado;
 - deploy em cloud.
 
 Acompanhe o planejamento em **[docs/ROADMAP.md](docs/ROADMAP.md)**.
@@ -562,3 +562,5 @@ Status: funcional e em evolução
 **Eduardo de Toledo Dias**
 
 Projeto desenvolvido para portfólio com foco em **Data Analytics, Machine Learning, APIs e desenvolvimento end-to-end**.
+
+[Portfólio](https://dudxzz-25.github.io/portfolio-web/) · [GitHub](https://github.com/dudxzz-25) · [LinkedIn](https://www.linkedin.com/in/eduardo-de-toledo-dias-880b9834b/)
